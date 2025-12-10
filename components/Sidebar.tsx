@@ -1,5 +1,6 @@
+
 import React from 'react';
-import { LayoutDashboard, Map, Users, ShoppingCart, BrainCircuit, Leaf } from 'lucide-react';
+import { LayoutDashboard, Map, Users, ShoppingCart, BrainCircuit, Leaf, Settings } from 'lucide-react';
 import { ViewState } from '../types';
 
 interface SidebarProps {
@@ -17,6 +18,8 @@ const Sidebar: React.FC<SidebarProps> = ({ currentView, onChangeView, isOpen }) 
     { id: 'ai-insights', label: 'AI Phân Tích', icon: BrainCircuit },
   ];
 
+  const settingsItem = { id: 'settings', label: 'Cấu Hình', icon: Settings };
+
   return (
     <aside className={`${isOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 fixed md:static inset-y-0 left-0 z-30 w-64 bg-white border-r border-slate-200 transition-transform duration-300 ease-in-out flex flex-col`}>
       <div className="h-16 flex items-center px-6 border-b border-slate-100">
@@ -24,7 +27,7 @@ const Sidebar: React.FC<SidebarProps> = ({ currentView, onChangeView, isOpen }) 
         <span className="text-xl font-bold text-slate-800">Hoa Cương</span>
       </div>
 
-      <nav className="flex-1 overflow-y-auto py-4">
+      <nav className="flex-1 overflow-y-auto py-4 flex flex-col justify-between">
         <ul className="space-y-1 px-3">
           {menuItems.map((item) => {
             const Icon = item.icon;
@@ -46,6 +49,20 @@ const Sidebar: React.FC<SidebarProps> = ({ currentView, onChangeView, isOpen }) 
             );
           })}
         </ul>
+
+        <div className="px-3 pb-2 mt-4 border-t border-slate-100 pt-4">
+             <button
+                onClick={() => onChangeView(settingsItem.id as ViewState)}
+                className={`w-full flex items-center px-3 py-3 rounded-lg transition-colors ${
+                  currentView === settingsItem.id
+                    ? 'bg-green-50 text-green-700 font-medium'
+                    : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                }`}
+              >
+                <Settings className={`w-5 h-5 mr-3 ${currentView === settingsItem.id ? 'text-green-600' : 'text-slate-400'}`} />
+                {settingsItem.label}
+              </button>
+        </div>
       </nav>
 
       <div className="p-4 border-t border-slate-100">

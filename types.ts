@@ -1,3 +1,4 @@
+
 export enum QualityType {
   TYPE_1 = 'Loại 1',
   TYPE_2 = 'Loại 2',
@@ -32,4 +33,4 @@ export interface PurchaseRecord {
   note?: string;
 }
 
-export type ViewState = 'dashboard' | 'areas' | 'farmers' | 'purchases' | 'ai-insights';
+export type ViewState = 'dashboard' | 'areas' | 'farmers' | 'purchases' | 'ai-insights' | 'settings';
